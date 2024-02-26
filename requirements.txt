@@ -1,2 +1,11 @@
 flask~=3.0.2
 python-dotenv~=1.0.1
+opencv-python~=4.9.0.80
+numpy~=1.26.3
+torchvision~=0.17.0
+pillow~=10.2.0
+torch
+```
+pyzbar~=0.1.9
+vietocr~=0.3.12
+ultralytics~=8.1.16

@@ -1,0 +1,1 @@
+from pyzbar import pyzbar

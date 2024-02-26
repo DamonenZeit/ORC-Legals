@@ -6,15 +6,16 @@ import torchvision
 import torch.nn as nn
 from pathlib import Path
 
+
 def save_model(model: torch.nn.Module,
-            target_dir: str,
-            model_name: str,
-            epoch: int,
-            optimizer: torch.optim,
-            loss_fn: torch.nn,
-            log_state: dict,
-            class_names: list
-            ):
+               target_dir: str,
+               model_name: str,
+               epoch: int,
+               optimizer: torch.optim,
+               loss_fn: torch.nn,
+               log_state: dict,
+               class_names: list
+               ):
     """Saves a PyTorch model to a target directory.
 
     Args:
@@ -39,7 +40,7 @@ def save_model(model: torch.nn.Module,
     # Create target directory
     target_dir_path = Path(target_dir)
     target_dir_path.mkdir(parents=True,
-                        exist_ok=True)
+                          exist_ok=True)
 
     # Create model save path
     assert model_name.endswith(".pth") or model_name.endswith(".pt"), "model_name should end with '.pt' or '.pth'"
@@ -54,7 +55,8 @@ def save_model(model: torch.nn.Module,
         'loss_fn': loss_fn,
         'log_state': log_state,
         'class_names': class_names
-        }, model_save_path)
+    }, model_save_path)
+
 
 def load_model(target_dir: str):
     """Loading a model checkpoint and then load state dict to the provided model
@@ -83,16 +85,18 @@ def load_model(target_dir: str):
         "class_names": class_names
     }
 
+
 def init_model(model_name: str, out_features: int = None):
-    if model_name=="resnet152":
-        weights = torchvision.models.ResNet152_Weights.DEFAULT # NEW in torchvision 0.13, "DEFAULT" means "best weights available"
+    if model_name == "resnet152":
+        weights = torchvision.models.ResNet152_Weights.DEFAULT  # NEW in torchvision 0.13, "DEFAULT" means "best
+        # weights available"
         model = torchvision.models.resnet152(weights=weights)
         # Change the number of out feature to your own number of class
-        if(out_features!=None):
-            ## Show the default out features
+        if out_features is not None:
+            # Show the default out features
             default_out_features = model.fc.out_features
             print(f"The default out features: {default_out_features}")
-            ## Change the default out features to number of class we have
+            # Change the default out features to number of class we have
             default_in_features = model.fc.in_features
             model.fc = torch.nn.Linear(in_features=default_in_features, out_features=6)
             adjusted_out_features = model.fc.out_features

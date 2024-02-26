@@ -1,3 +1,3 @@
 from dotenv import load_dotenv
 
-load_dotenv()  # Load environment variables from .env.example file.
+load_dotenv()  # Load environment variables from .env.example file.z
